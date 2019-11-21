@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+    <style>
+        #container{
+        border:solid .5px black;
+        display:none
+        }
+        .fooditem{
+        
+          background-color:grey;
+          color:black;	
+        }
+        .fooditem:hover{
+        
+          background-color:white;
+        }
+
+        body{
+          background: #ffd89b;
+          background: -webkit-linear-gradient(to right, #ffd89b, #19547b);
+          background: linear-gradient(to right, #ffd89b, #19547b);}
+
+        </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+body{
+  font-size: 1.4rem;
+}
+
+nav {
+    background-color: rgb(113, 158, 158) ;
+    width: 100%;
+    height: 60px;
+     
+        };
+
+.card-img-top {
+    min-width: 100%;
+    width: auto;
+    height: auto;
+}
+</style>
+
+</head>
+<body>
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#">Gagdet Shop <i class="glyphicon glyphicon-headphones"></i>
+    </a>
+  
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+      aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+  
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="homepage.html">Home
+            <span class="sr-only">(current)</span>
+            <i class="glyphicon glyphicon-home"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">MyOrders <i class="glyphicon glyphicon-folder-open"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">AboutUs <i class="glyphicon glyphicon-info-sign"></i>
+          </a>
+        </li>
+  
+        <!-- Dropdown -->
+      
+        <li class="nav-item" style="margin-left:250px;">
+          <a class="nav-link" href="#" id="username">Hi,<i class="glyphicon glyphicon-user"></i>
+          </a>
+        </li>
+      <!-- Dropdown -->
+      
+      <li class="nav-item" style="margin-left:10px;">
+        <a class="nav-link" href="#" id="username" onclick="loggingout()"><span class="glyphicon glyphicon-log-out">Logout</span>
+        </a>
+        
+</li>
+    
+
+<li class="nav-item" style="margin-left:150px;margin-top:10px ;">
+        <button type="button" class="btn btn-primary" style="height:35px;background-color: green;width: 110%;font-size:15px;">
+                Cart <span class="badge badge-light" id="noofprods">4</span>
+         </button>
+</li>
+
+      </ul>
+      <!-- Links -->
+  
+      
+    </div>
+    <!-- Collapsible content -->
+  
+  </nav>  <!--/.Navbar-->
+<!--<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="card h-100">
+        <a href="#"><img class="card-img-top" src="" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Item Five</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+    </div>
+</div>
+-->
+
+
+   
+
+   
+    
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-8">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					
+				</div>
+				<div class="panel-body" id="products">
+                        
+					
+					
+				</div>
+				<div class="panel-footer">
+					<div class="row text-center">
+						<div class="col-xs-9">
+							<h4 class="text-right">Total <strong id="totalamt"></strong></h4>
+						</div>
+						<div class="col-xs-3">
+							<button type="button" onclick="placeorder()" class="btn btn-success btn-block">
+								Checkout
+							</button>
+                        </div>
+                        <div class="alert alert-success alert-dismissible" id="cartalert" style="display: none;">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Success!</strong> Order placed ,Please refresh the page
+                              </div>
+                            </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--
+    <div class="row">
+   1 <div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">
+    </div>
+   2 <div class="col-xs-4">
+        <h4 class="product-name"><strong>Product name</strong></h4><h4><small>Product description</small></h4>
+    </div>
+   3 <div class="col-xs-6">
+		<div class="col-xs-6 text-right">
+		    <h6><strong id="price">25.00 <span class="text-muted">x</span></strong><strong id="noitems">25</strong></h6>
+		</div>
+	</div>
+</div>
+-->
+
+
+
+
+
+<p style="height: 500px;"></p>
+</body>
+<script>
+
+function createproducts(prodname,des,amount,quant){
+var outter=document.createElement("div");
+outter.className="row";
+var inner1=document.createElement("div");
+inner1.className="col-xs-2";
+var imagedata=document.createElement("img");
+imagedata.className="img-responsive";
+imagedata.src="http://placehold.it/100x70" ;
+inner1.appendChild(imagedata);
+outter.appendChild(inner1);
+var inner2=document.createElement("div");
+inner2.className="col-xs-4";
+var in2h41=document.createElement("h4");
+in2h41.className="product-name";
+var strongin21=document.createElement("strong");
+strongin21.innerHTML=prodname;
+in2h41.appendChild(strongin21);
+var in2h42=document.createElement("h4");
+var strongin22=document.createElement("small");
+strongin22.innerHTML=des;
+in2h42.appendChild(strongin22);
+inner2.appendChild(in2h41);
+inner2.appendChild(in2h42);
+outter.appendChild(inner2);
+
+var inner3=document.createElement("div");
+inner3.className="col-xs-6";
+var inner31=document.createElement("div");
+inner31.className="col-xs-6 text-right";
+var in3h6=document.createElement("h6");
+var pprice=document.createElement("strong");
+pprice.id="price";
+pprice.innerHTML=amount;
+var cross=document.createElement("span");
+cross.className="text-muted";
+cross.innerHTML="x";
+pprice.appendChild(cross);
+in3h6.appendChild(pprice);
+var noofitems=document.createElement("strong");
+noofitems.id="noitems";
+noofitems.innerHTML=quant;
+in3h6.appendChild(noofitems);
+inner31.appendChild(in3h6);
+inner3.appendChild(inner31);
+outter.appendChild(inner3);
+var line=document.createElement("hr");
+
+var a=document.getElementById("products");
+a.appendChild(outter)
+a.appendChild(line)
+}
+
+var totalvalue=0;
+var i=0;
+for(i=0;i<10;i++)
+{
+    //createproducts();
+}
+
+var cartitems={};
+cartitems=JSON.parse(localStorage.getItem("cart"));
+var len=Object.keys(cartitems).length;
+console.log(cartitems,len)
+var temp
+for (temp in cartitems){
+    var quantity=cartitems[temp];
+    xhr =new XMLHttpRequest;
+    xhr.onreadystatechange=loadprod;
+    var url="http://localhost:5000/product/"+temp;
+    xhr.open("GET",url,true);
+    xhr.send();
+
+    function loadprod(){
+        if(xhr.readyState==4 &&xhr.status==200)
+        {
+            
+            console.log(this.responseText);
+            console.log("a");
+            var res=JSON.parse(this.responseText);
+            createproducts(res["name"],res["desc"],res["price"],cartitems[temp]);
+            totalvalue=totalvalue+cartitems[temp]*res["price"];
+            document.getElementById("totalamt").innerHTML=totalvalue;
+
+
+        }
+    }
+    
+    console.log(temp,cartitems[temp])
+}
+
+
+
+
+
+cartitems=JSON.parse(localStorage.getItem("cart"));
+var len=Object.keys(cartitems).length;
+document.getElementById("noofprods").innerHTML=len;
+var username=document.getElementById("username")
+username.innerHTML+=localStorage.getItem("presentuser");
+function loggingout(){
+  console.log("will log you out");
+  localStorage.removeItem("presentuser");
+  localStorage.removeItem("cart")
+  window.location.replace("index.html");
+}
+
+function placeorder(){
+    document.getElementById("cartalert").style="";
+    cartitems={};
+    localStorage.setItem("cart",JSON.stringify(cartitems));
+}
+
+
+</script>
+</html>

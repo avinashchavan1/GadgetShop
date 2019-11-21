@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css">
+<title>Register</title>
+<style>
+
+</style>
+</head>
+<body>
+
+    <div class="login-box">
+        <h1>Register</h1>
+        <div class="textbox">
+          <i class="fas fa-user"></i>
+          <input type="text" placeholder="Name" id="name">
+        </div>
+      
+        <div class="textbox">
+          <i class="fas fa-lock"></i>
+          <input type="password" placeholder="Password" id="pwd">
+        </div>
+      
+        <div class="textbox">
+            <i class="fas fa-phone"></i>
+            <input type="text" placeholder="Mobile Number" id="phno">
+          </div>
+          <div class="textbox">
+              <i class="fas fa-envelope"></i>
+              <input type="text" placeholder="E-mail" id="email">
+            </div>
+            
+        <input type="button" class="btn" value="Register" onclick="submitform()">
+      </div>
+
+
+
+
+
+<script>
+  var link = "http://localhost:5000";
+    function submitform(){
+        var password = document.getElementById("pwd").value;
+        var email =document.getElementById("email").value;
+        var name =document.getElementById("name").value;
+        var phno = document.getElementById("phno").value;
+        var url = link+"/register";
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            if(this.readyState==4 && this.status==200)
+            {
+              //console.log("request sucessfull");
+              var json =JSON.parse(xhttp.responseText);
+              console.log(json)
+              location.replace("index.html")
+            }
+            if(this.readyState==4 && this.status!=200){
+            //console.log("authentication failure")
+            var json =JSON.parse(xhttp.responseText);
+              console.log(json)
+            var message =document.getElementById("message");
+            message.innerHTML=json;
+            message.style.color="#ff1a1a";
+            location.replace("index.html")
+            }
+
+        };
+        var data=JSON.stringify({"email":email,"pwd":password,"name":name,"phno":phno});
+        xhttp.open("POST",url,true);
+        xhttp.setRequestHeader("Content-Type","application/json");
+        xhttp.send(data);       
+    }
+
+</script>
+
+</body>
+</html>
